@@ -1,10 +1,13 @@
 package com.restapicalls.hellospringapp.controllers;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.restapicalls.hellospringapp.models.User;
 
 @RestController
 @RequestMapping("/hello")
@@ -28,15 +31,25 @@ public class HelloRestController {
 	 ***/
 	@RequestMapping(value = { "/query" }, method = RequestMethod.GET)
 	public String sayHello(@RequestParam(value = "name") String name) {
-		return "Hello " + name + " from BridgeLabz.";
+		return "Hello " + name + " from BridgeLabz...!";
 	}
 
-	/*** UC-3:- Make REST Call to show Hello Mark from BridgeLabz. 
+	/***
+	 * UC-3:- Make REST Call to show Hello Mark from BridgeLabz.
 	 * 
-	 *   --> curl localhost:8080/hello/param/Mark -w "\n"
-	 * ***/
+	 * --> curl localhost:8080/hello/param/Mark -w "\n"
+	 ***/
 	@RequestMapping("/param/{name}")
 	public String sayHelloParam(@PathVariable String name) {
-		return "Hello " + name + " from BridgeLabz.";
+		return "Hello " + name + " from BridgeLabz...!";
+	}
+
+	/*** UC-4:- Make REST Call to show Hello Mark Taylor from BridgeLabz. 
+	 * 
+	 *   --> curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Mark","lastName": "Taylor"}' "http://localhost:8080/hello/post" -w "\n" 
+	 * ***/
+	@RequestMapping("/post")
+	public String sayHello(@RequestBody User user) {
+		return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz...!";
 	}
 }
