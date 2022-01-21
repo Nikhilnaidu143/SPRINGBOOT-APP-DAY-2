@@ -44,12 +44,26 @@ public class HelloRestController {
 		return "Hello " + name + " from BridgeLabz...!";
 	}
 
-	/*** UC-4:- Make REST Call to show Hello Mark Taylor from BridgeLabz. 
+	/***
+	 * UC-4:- Make REST Call to show Hello Mark Taylor from BridgeLabz.
 	 * 
-	 *   --> curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Mark","lastName": "Taylor"}' "http://localhost:8080/hello/post" -w "\n" 
-	 * ***/
+	 * --> curl -X POST -H "Content-Type: application/json" -d '{"firstName":
+	 * "Mark","lastName": "Taylor"}' "http://localhost:8080/hello/post" -w "\n"
+	 ***/
 	@RequestMapping("/post")
 	public String sayHello(@RequestBody User user) {
 		return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz...!";
+	}
+
+	/***
+	 * UC-5:- Make REST Call to show Hello Mark Taylor from BridgeLabz. ==>Use PUT
+	 * Request Method and pass first name as Path Variable and last name as Query
+	 * Parameter.
+	 * 
+	 * --> curl -x PUT localhost:8080/hello/put/Mark/?lastName=Tayler -w "\n"
+	 ***/
+	@RequestMapping("/put/{firstName}")
+	public String sayHello(@PathVariable String firstName , @RequestParam(value = "lastName") String lastName) {
+		return "Hello " + firstName + " " + lastName + " from BridgeLabz...!";
 	}
 }

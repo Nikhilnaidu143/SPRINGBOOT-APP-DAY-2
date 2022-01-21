@@ -1,6 +1,7 @@
 package com.restapicalls.hellospringapp.models;
 
 public class User {
+	
 	// private variables.
 	private String firstName;
 	private String lastName;
