@@ -19,7 +19,7 @@ public class HelloRestController {
 	 * 
 	 * --> curl localhost:8080/hello -w "\n"
 	 ***/
-	@RequestMapping(value = { "", "/", "/home" })
+	@RequestMapping(value = { "", "/", "/home" }, method = RequestMethod.GET)
 	public String sayHello() {
 		return "Hello from BridgeLabz...!";
 	}
@@ -39,7 +39,7 @@ public class HelloRestController {
 	 * 
 	 * --> curl localhost:8080/hello/param/Mark -w "\n"
 	 ***/
-	@RequestMapping("/param/{name}")
+	@RequestMapping(value = "/param/{name}" , method = RequestMethod.GET)
 	public String sayHelloParam(@PathVariable String name) {
 		return "Hello " + name + " from BridgeLabz...!";
 	}
@@ -50,7 +50,7 @@ public class HelloRestController {
 	 * --> curl -X POST -H "Content-Type: application/json" -d '{"firstName":
 	 * "Mark","lastName": "Taylor"}' "http://localhost:8080/hello/post" -w "\n"
 	 ***/
-	@RequestMapping("/post")
+	@RequestMapping(value = "/post" , method = RequestMethod.POST)
 	public String sayHello(@RequestBody User user) {
 		return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz...!";
 	}
@@ -62,7 +62,7 @@ public class HelloRestController {
 	 * 
 	 * --> curl -x PUT localhost:8080/hello/put/Mark/?lastName=Tayler -w "\n"
 	 ***/
-	@RequestMapping("/put/{firstName}")
+	@RequestMapping(value = "/put/{firstName}" , method = RequestMethod.PUT)
 	public String sayHello(@PathVariable String firstName , @RequestParam(value = "lastName") String lastName) {
 		return "Hello " + firstName + " " + lastName + " from BridgeLabz...!";
 	}
